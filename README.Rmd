@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 ![GitHub R package version](https://img.shields.io/github/r-package/v/shaunson26/parafit)
+
 <!-- badges: end -->
 
 The goal of parafit is to ...
