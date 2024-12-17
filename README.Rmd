@@ -1,0 +1,85 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# parafit
+
+<!-- badges: start -->
+![GitHub R package version](https://img.shields.io/github/r-package/v/shaunson26/parafit)
+<!-- badges: end -->
+
+The goal of parafit is to ...
+
+## Installation
+
+You can install the development version of parafit from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Shaunson26/parafit")
+```
+
+Functions of the `parafit` package have the suffix `pf_` e.g.
+
+``` r
+pf_pcoa
+pf_parafit
+```
+
+```{r, echo=F}
+devtools::load_all()
+```
+
+## Example
+
+Create Principal Coordinates of phylogentic distances.
+
+```{r}
+# gopher.D and lice.D are included in parafit and are square distance matrices
+gopher_pcoa <- pf_pcoa(gopher.D)
+lice_pcoa <- pf_pcoa(lice.D)
+
+gopher_pcoa[1:5, 1:3]
+lice_pcoa[1:5, 1:3]
+```
+
+Run parafit obtaining the global test statistics and testing individual associations
+
+```{r}
+res <-
+  pf_parafit(host_pcoa = t(gopher_pcoa),
+             parasite_pcoa = lice_pcoa,
+             associations = gopher.lice.links,
+             permutations = 999,
+             test_links = TRUE)
+
+res
+```
+
+For larger datasets, testing individual associations can be run in parallel
+
+```{r}
+res <-
+  pf_parafit(host_pcoa = t(gopher_pcoa),
+             parasite_pcoa = lice_pcoa,
+             associations = gopher.lice.links,
+             permutations = 999,
+             test_links = TRUE,
+             parallel = TRUE,
+             cores = 2)
+
+res
+```
+
+

@@ -1,0 +1,24 @@
+Package: parafit
+Title: Implementation of Parafit - A Statistical Test for Host–Parasite Coevolution
+Version: 0.0.0.9000
+Authors@R: 
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: ParaFit has been developed to test the signicance of a global hypothesis of coevolution between parasites and their hosts. Individual host–parasite association links can also be tested. The test statistics are functions of the host and parasite phylogenetic trees and of the set of host–parasite association links.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+Imports: 
+    parallel,
+    pbapply,
+    Rcpp
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
