@@ -30,15 +30,16 @@ You can install the development version of parafit from [GitHub](https://github.
 devtools::install_github("Shaunson26/parafit")
 ```
 
+```{r, echo=F, include = F}
+devtools::load_all()
+```
+
+
 Functions of the `parafit` package have the suffix `pf_` e.g.
 
 ``` r
 pf_pcoa
 pf_parafit
-```
-
-```{r, echo=F}
-devtools::load_all()
 ```
 
 ## Example
