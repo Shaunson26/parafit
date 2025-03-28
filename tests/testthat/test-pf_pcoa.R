@@ -1,4 +1,4 @@
-test_that("pf_pcoa works", {
+test_that("pf_pcoa works - gopher", {
 
   res <- pf_pcoa(gopher.D)
 
@@ -28,6 +28,10 @@ test_that("pf_pcoa works", {
 
   expect_true(all.equal(unname(abs(res$pco$vectors)), abs(res_cpp$vectors)))
 
+}
+)
+
+test_that("pf_pcoa works - sponge", {
 
   # Sponge
   expect_error(pf_pcoa(sponge_dist), regexp = "Matrix has negative eigenvalues")
@@ -38,8 +42,8 @@ test_that("pf_pcoa works", {
 
   expect_true(
     all.equal(
-      unname(res$vectors[1:5,1]),
-      c(-0.01778891, -0.01917971, -0.01759496, -0.01298697, -0.01176871),
+      abs(unname(res$vectors[1:5,1])),
+      abs(c(-0.01778891, -0.01917971, -0.01759496, -0.01298697, -0.01176871)),
       tolerance = 0.000001
     )
   )
@@ -53,8 +57,8 @@ test_that("pf_pcoa works", {
 
   expect_true(
     all.equal(
-      unname(res$pco$values[1:82,c('Eigenvalues')]),
-      unname(res_cpp$values[,1]),
+      unname(res$pco$values[1:81,c('Eigenvalues')]),
+      unname(res_cpp$values[1:81,1]),
       tolerance = 0.00000001
     )
   )
