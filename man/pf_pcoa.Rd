@@ -4,10 +4,14 @@
 \alias{pf_pcoa}
 \title{Obtain Principal Coordinate from a distance matrix}
 \usage{
-pf_pcoa(x)
+pf_pcoa(x, correction = "none", use_cpp = FALSE)
 }
 \arguments{
 \item{x}{a distance matrix}
+
+\item{correction}{description}
+
+\item{use_cpp}{use ape pacakge or CPP}
 }
 \value{
 matrix of principal coordinates

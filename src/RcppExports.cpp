@@ -12,8 +12,8 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // pf_parafit_cpp
-arma::vec pf_parafit_cpp(const arma::mat& assoA, const arma::mat& paraB, const arma::mat& hostC, int permutations);
-RcppExport SEXP _parafit_pf_parafit_cpp(SEXP assoASEXP, SEXP paraBSEXP, SEXP hostCSEXP, SEXP permutationsSEXP) {
+arma::vec pf_parafit_cpp(const arma::mat& assoA, const arma::mat& paraB, const arma::mat& hostC, int permutations, bool verbose, int print_n);
+RcppExport SEXP _parafit_pf_parafit_cpp(SEXP assoASEXP, SEXP paraBSEXP, SEXP hostCSEXP, SEXP permutationsSEXP, SEXP verboseSEXP, SEXP print_nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,24 +21,43 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type paraB(paraBSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type hostC(hostCSEXP);
     Rcpp::traits::input_parameter< int >::type permutations(permutationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(pf_parafit_cpp(assoA, paraB, hostC, permutations));
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    Rcpp::traits::input_parameter< int >::type print_n(print_nSEXP);
+    rcpp_result_gen = Rcpp::wrap(pf_parafit_cpp(assoA, paraB, hostC, permutations, verbose, print_n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// pf_parafit_parallel_cpp
+arma::vec pf_parafit_parallel_cpp(const arma::mat& assoA, const arma::mat& paraB, const arma::mat& hostC, std::size_t permutations, const bool verbose, const int print_n);
+RcppExport SEXP _parafit_pf_parafit_parallel_cpp(SEXP assoASEXP, SEXP paraBSEXP, SEXP hostCSEXP, SEXP permutationsSEXP, SEXP verboseSEXP, SEXP print_nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type assoA(assoASEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type paraB(paraBSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type hostC(hostCSEXP);
+    Rcpp::traits::input_parameter< std::size_t >::type permutations(permutationsSEXP);
+    Rcpp::traits::input_parameter< const bool >::type verbose(verboseSEXP);
+    Rcpp::traits::input_parameter< const int >::type print_n(print_nSEXP);
+    rcpp_result_gen = Rcpp::wrap(pf_parafit_parallel_cpp(assoA, paraB, hostC, permutations, verbose, print_n));
     return rcpp_result_gen;
 END_RCPP
 }
 // pf_pcoa_cpp
-arma::mat pf_pcoa_cpp(const arma::mat& x);
+Rcpp::List pf_pcoa_cpp(Rcpp::RObject x);
 RcppExport SEXP _parafit_pf_pcoa_cpp(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::RObject >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(pf_pcoa_cpp(x));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_parafit_pf_parafit_cpp", (DL_FUNC) &_parafit_pf_parafit_cpp, 4},
+    {"_parafit_pf_parafit_cpp", (DL_FUNC) &_parafit_pf_parafit_cpp, 6},
+    {"_parafit_pf_parafit_parallel_cpp", (DL_FUNC) &_parafit_pf_parafit_parallel_cpp, 6},
     {"_parafit_pf_pcoa_cpp", (DL_FUNC) &_parafit_pf_pcoa_cpp, 1},
     {NULL, NULL, 0}
 };

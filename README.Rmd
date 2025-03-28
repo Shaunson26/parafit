@@ -45,23 +45,26 @@ pf_parafit
 
 ## Example
 
-Create Principal Coordinates of phylogentic distances.
+Create Principal Coordinates of phylogenetic distances. Coordinates link the vectors element
+of the output.
 
 ```{r}
 # gopher.D and lice.D are included in parafit and are square distance matrices
 gopher_pcoa <- pf_pcoa(gopher.D)
 lice_pcoa <- pf_pcoa(lice.D)
 
-gopher_pcoa[1:5, 1:3]
-lice_pcoa[1:5, 1:3]
+str(gopher_pcoa)
+
+gopher_pcoa$vectors[1:5, 1:3]
+lice_pcoa$vectors[1:5, 1:3]
 ```
 
 Run parafit obtaining the global test statistics and testing individual associations
 
 ```{r}
 res <-
-  pf_parafit(host_pcoa = t(gopher_pcoa),
-             parasite_pcoa = lice_pcoa,
+  pf_parafit(host_pcoa = gopher_pcoa$vectors,
+             parasite_pcoa = lice_pcoa$vectors,
              associations = gopher.lice.links,
              permutations = 999,
              test_links = TRUE)
@@ -73,8 +76,8 @@ For larger datasets, testing individual associations can be run in parallel
 
 ```{r}
 res <-
-  pf_parafit(host_pcoa = t(gopher_pcoa),
-             parasite_pcoa = lice_pcoa,
+  pf_parafit(host_pcoa = gopher_pcoa$vectors,
+             parasite_pcoa = lice_pcoa$vectors,
              associations = gopher.lice.links,
              permutations = 999,
              test_links = TRUE,

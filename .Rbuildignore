@@ -3,3 +3,4 @@
 ^README\.Rmd$
 R/pf_parafit_R.R
 ^LICENSE\.md$
+dev/

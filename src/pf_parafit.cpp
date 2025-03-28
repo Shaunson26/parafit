@@ -10,10 +10,12 @@
 //' @param paraB parasite principal coordinates
 //' @param hostC transposed host principal coordinates
 //' @param permutations number of permutations
+//' @param verbose whether to print interation number to console
+//' @param print_n print interation number at every print_n
 //'
 //' @return list of results, with elements global and links (the latter if test_links = TRUE).
 // [[Rcpp::export]]
-arma::vec pf_parafit_cpp(const arma::mat& assoA, const arma::mat& paraB, const arma::mat& hostC, int permutations) {
+arma::vec pf_parafit_cpp(const arma::mat& assoA, const arma::mat& paraB, const arma::mat& hostC, int permutations, bool verbose, int print_n) {
 
   //int num_cols = HP.n_cols;
   arma::vec trace_results(permutations);
@@ -33,6 +35,12 @@ arma::vec pf_parafit_cpp(const arma::mat& assoA, const arma::mat& paraB, const a
 
     // Compute the sum of squares of the elements in the result matrix
     trace_results[i] = arma::accu(arma::square(matD));
+
+    if (verbose){
+      if (i % print_n == 0){
+        Rcpp::Rcout << i << "\n";
+      }
+    }
 
   }
 

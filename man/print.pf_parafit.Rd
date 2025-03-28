@@ -4,10 +4,12 @@
 \alias{print.pf_parafit}
 \title{Print method for pf_parafit class}
 \usage{
-\method{print}{pf_parafit}(x)
+\method{print}{pf_parafit}(x, ...)
 }
 \arguments{
 \item{x}{pf_parafit object}
+
+\item{...}{passed on to print}
 }
 \description{
 Print method for pf_parafit class

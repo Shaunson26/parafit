@@ -12,15 +12,17 @@ pf_parafit(
   test_links = FALSE,
   seed,
   parallel = F,
-  cores = 1
+  cores,
+  verbose = FALSE,
+  .print_n = 100
 )
 }
 \arguments{
-\item{host_pcoa}{host principal coordinates}
+\item{host_pcoa}{host principal coordinates (samples in rows, axes in columns)}
 
-\item{parasite_pcoa}{parasite principal coordinates}
+\item{parasite_pcoa}{parasite principal coordinates (samples in rows, axes in columns)}
 
-\item{associations}{association matrix}
+\item{associations}{association matrix (host in rows, parasite in columns)}
 
 \item{permutations}{number of permutations to conduct for significance testing}
 
@@ -31,6 +33,10 @@ pf_parafit(
 \item{parallel}{test links with parallel computing}
 
 \item{cores}{number of cores if using parallel computing}
+
+\item{verbose}{whether to print iteration numbers to the console}
+
+\item{.print_n}{what iteration values to print by}
 }
 \value{
 list of results, with elements global and links (the latter if test_links = TRUE).

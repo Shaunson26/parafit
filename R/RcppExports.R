@@ -10,10 +10,29 @@
 #' @param paraB parasite principal coordinates
 #' @param hostC transposed host principal coordinates
 #' @param permutations number of permutations
+#' @param verbose whether to print interation number to console
+#' @param print_n print interation number at every print_n
 #'
 #' @return list of results, with elements global and links (the latter if test_links = TRUE).
-pf_parafit_cpp <- function(assoA, paraB, hostC, permutations) {
-    .Call(`_parafit_pf_parafit_cpp`, assoA, paraB, hostC, permutations)
+pf_parafit_cpp <- function(assoA, paraB, hostC, permutations, verbose, print_n) {
+    .Call(`_parafit_pf_parafit_cpp`, assoA, paraB, hostC, permutations, verbose, print_n)
+}
+
+#' Run the parafit algorithm
+#'
+#' Run the parafit algorithm to obtain the global test statistics and obtain a test
+#' of significance using permutation. Optionally, obtain tests of individual associations.
+#'
+#' @param assoA association matrix
+#' @param paraB parasite principal coordinates
+#' @param hostC transposed host principal coordinates
+#' @param permutations number of permutations
+#' @param verbose whether to print iteration number to the console
+#' @param print_n the level to print iteration numbers by
+#'
+#' @return list of results, with elements global and links (the latter if test_links = TRUE).
+pf_parafit_parallel_cpp <- function(assoA, paraB, hostC, permutations, verbose, print_n) {
+    .Call(`_parafit_pf_parafit_parallel_cpp`, assoA, paraB, hostC, permutations, verbose, print_n)
 }
 
 #' Obtain Principal Coordinate from a distance matrix

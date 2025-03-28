@@ -53,3 +53,33 @@
 #' A matrix with 130 rows and 202 columns
 #' @source ape package
 "mammals_fleas_links"
+
+
+
+
+#' Spnge phylogenetic distances
+#'
+#' Square matrix of distances
+#'
+#' @format ## `sponge_dist `
+#' A matrix with ...
+"sponge_dist"
+
+#' Bacteria phylogenetic distances
+#'
+#' Square matrix of distances
+#'
+#' @format ## `bacteria_dist `
+#' A matrix with ...
+#' @source ape package
+"bacteria_dist"
+
+#' Sponge and bacteria association matrix
+#'
+#' A matrix of associations between sponge and bacteria. 1 = associated, 0 = no association
+#'
+#' @format ## `sponge_bacteria_links `
+#' A matrix with ...
+"sponge_bacteria_links"
+
+
