@@ -31,7 +31,7 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
   }
 
   if (missing(seed)){
-    seed = sample(1:1000, 1)
+    seed = sample(x = 1:1000, size =  1)
   }
 
   parafit_fn <- pf_parafit_cpp
@@ -113,8 +113,8 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
 
     results$links <-
       data.frame(
-        host = HP_link_inds[,'row'],
-        parasite = HP_link_inds[,'col'],
+        host = rownames(associations)[HP_link_inds[,'row']],
+        parasite = colnames(associations)[HP_link_inds[,'col']],
         stat_1 = unname(link_stats[1,]),
         p_1 = link_pvalues
       )
@@ -143,6 +143,7 @@ print.pf_parafit <- function(x, ...){
   if (is.null(x$links)) {
     cat('Not tested')
   } else {
-    print(x$links, ...)
+    cat(nrow(x$links), 'links tested.\n\n')
+    print(head(x$links))
   }
 }
