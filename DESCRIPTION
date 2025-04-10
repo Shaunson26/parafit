@@ -1,6 +1,6 @@
 Package: parafit
 Title: Implementation of Parafit - A Statistical Test for Host–Parasite Coevolution
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: 
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
@@ -18,8 +18,9 @@ Imports:
     Rcpp,
     RcppParallel
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
 LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+SystemRequirements: GNU make

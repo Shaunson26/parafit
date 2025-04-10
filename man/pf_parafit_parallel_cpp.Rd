@@ -4,7 +4,15 @@
 \alias{pf_parafit_parallel_cpp}
 \title{Run the parafit algorithm}
 \usage{
-pf_parafit_parallel_cpp(assoA, paraB, hostC, permutations, verbose, print_n)
+pf_parafit_parallel_cpp(
+  assoA,
+  paraB,
+  hostC,
+  permutations,
+  seed,
+  verbose,
+  print_n
+)
 }
 \arguments{
 \item{assoA}{association matrix}
@@ -14,6 +22,8 @@ pf_parafit_parallel_cpp(assoA, paraB, hostC, permutations, verbose, print_n)
 \item{hostC}{transposed host principal coordinates}
 
 \item{permutations}{number of permutations}
+
+\item{seed}{random seed value}
 
 \item{verbose}{whether to print iteration number to the console}
 

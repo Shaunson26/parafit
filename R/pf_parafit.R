@@ -51,6 +51,7 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
                paraB = parasite_pcoa,
                hostC = t(host_pcoa),
                permutations = permutations,
+               seed = seed,
                verbose = verbose,
                print_n = .print_n)
 
@@ -88,6 +89,7 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
                  paraB = parasite_pcoa,
                  hostC = t(host_pcoa),
                  permutations = permutations,
+                 seed = seed,
                  verbose = verbose,
                  print_n = .print_n)
 
@@ -137,13 +139,13 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
 #' @export print.pf_parafit
 #' @export
 print.pf_parafit <- function(x, ...){
-  cat('Parafit\n\n')
-  cat('ParaFitGlobal = ', x$global$stat, ', P value = ', round(x$global$p, 4), ' (', x$global$permutations, ')\n\n', sep = '')
-  cat('Individual tests of links\n\n')
+  base::cat('Parafit\n\n')
+  base::cat('ParaFitGlobal = ', x$global$stat, ', P value = ', base::round(x$global$p, 4), ' (', x$global$permutations, ')\n\n', sep = '')
+  base::cat('Individual tests of links\n\n')
   if (is.null(x$links)) {
     cat('Not tested')
   } else {
-    cat(nrow(x$links), 'links tested.\n\n')
-    print(head(x$links))
+    base::cat(base::nrow(x$links), 'links tested.\n\n')
+    base::print(utils::head(x$links))
   }
 }
