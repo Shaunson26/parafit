@@ -4,7 +4,7 @@
 \alias{pf_parafit_cpp}
 \title{Run the parafit algorithm}
 \usage{
-pf_parafit_cpp(assoA, paraB, hostC, permutations, verbose, print_n, seed)
+pf_parafit_cpp(assoA, paraB, hostC, permutations, seed)
 }
 \arguments{
 \item{assoA}{association matrix}
@@ -15,14 +15,10 @@ pf_parafit_cpp(assoA, paraB, hostC, permutations, verbose, print_n, seed)
 
 \item{permutations}{number of permutations}
 
-\item{verbose}{whether to print interation number to console}
-
-\item{print_n}{print interation number at every print_n}
-
 \item{seed}{random seed value}
 }
 \value{
-list of results, with elements global and links (the latter if test_links = TRUE).
+vector of trace statistics
 }
 \description{
 Run the parafit algorithm to obtain the global test statistics and obtain a test

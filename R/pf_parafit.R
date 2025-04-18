@@ -13,10 +13,11 @@
 #' @param cores number of cores if using parallel computing
 #' @param verbose whether to print iteration numbers to the console
 #' @param .print_n what iteration values to print by
+#' @param use_r use R version of parafit (slower)
 #'
 #' @return list of results, with elements global and links (the latter if test_links = TRUE).
 #' @export
-pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, test_links = FALSE, seed, parallel = F, cores, verbose = FALSE, .print_n = 100){
+pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, test_links = FALSE, seed, parallel = F, cores, verbose = FALSE, .print_n = 100, use_r = FALSE){
 
   stopifnot(
     'host_pcoa must be a matrix' = inherits(host_pcoa, 'matrix'),
@@ -34,11 +35,15 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
     seed = sample(x = 1:1000, size =  1)
   }
 
+  RcppParallel::setThreadOptions(numThreads = 1)
   parafit_fn <- pf_parafit_cpp
+
+  if (use_r){
+    parafit_fn <- pf_parafit_r
+  }
 
   if (parallel){
     RcppParallel::setThreadOptions(numThreads = cores)
-    parafit_fn <- pf_parafit_parallel_cpp
   }
 
   message('Running parafit ...')
@@ -51,9 +56,7 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
                paraB = parasite_pcoa,
                hostC = t(host_pcoa),
                permutations = permutations,
-               seed = seed,
-               verbose = verbose,
-               print_n = .print_n)
+               seed = seed)
 
   results <-
     list(
@@ -89,9 +92,7 @@ pf_parafit <- function(host_pcoa, parasite_pcoa, associations, permutations, tes
                  paraB = parasite_pcoa,
                  hostC = t(host_pcoa),
                  permutations = permutations,
-                 seed = seed,
-                 verbose = verbose,
-                 print_n = .print_n)
+                 seed = seed)
 
     }
 

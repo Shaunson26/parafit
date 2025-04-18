@@ -14,7 +14,8 @@ pf_parafit(
   parallel = F,
   cores,
   verbose = FALSE,
-  .print_n = 100
+  .print_n = 100,
+  use_r = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ pf_parafit(
 \item{verbose}{whether to print iteration numbers to the console}
 
 \item{.print_n}{what iteration values to print by}
+
+\item{use_r}{use R version of parafit (slower)}
 }
 \value{
 list of results, with elements global and links (the latter if test_links = TRUE).
